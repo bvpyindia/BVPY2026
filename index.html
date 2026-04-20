@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BVPY — Bhartiya Vaigyanik Protsahan Yojana</title>
+  <meta name="description" content="100% Free Education Scholarship for 8th-12th students. Government approved scheme under Ministry of Corporate Affairs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: hsl(216,62%,20%);
+      --navy-dark: hsl(216,62%,14%);
+      --saffron: hsl(33,100%,50%);
+      --saffron-dark: hsl(33,100%,43%);
+      --bg-light: hsl(210,20%,96%);
+      --bg-faint: hsl(210,20%,98%);
+      --border: hsl(210,14%,89%);
+    }
+    body { font-family: 'Noto Sans', sans-serif; background: #fff; color: #374151; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+
+    /* ── Tricolor bar ── */
+    .tricolor { height: 4px; background: linear-gradient(to right, #FF9933 33.3%, #fff 33.3% 66.6%, #138808 66.6%); }
+
+    /* ── Utility bar ── */
+    .utility-bar { background: var(--navy-dark); color: #fff; font-size: 11px; padding: 6px 0; }
+    .utility-bar .container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; }
+    .utility-bar span { display: inline-flex; align-items: center; gap: 6px; }
+    .utility-bar .left, .utility-bar .right { display: flex; gap: 20px; flex-wrap: wrap; }
+
+    /* ── Header ── */
+    header { background: #fff; border-bottom: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,.07); }
+    .header-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 16px; }
+    .header-brand { display: flex; align-items: center; gap: 16px; }
+    .header-brand img { width: 80px; height: 80px; object-fit: contain; }
+    .header-brand h1 { font-family: 'Noto Serif', serif; color: var(--navy); font-size: 22px; font-weight: 700; line-height: 1.2; }
+    .header-brand p.sub { font-size: 13px; font-weight: 600; color: #374151; margin-top: 2px; }
+    .header-brand p.meta { font-size: 11px; color: #6b7280; margin-top: 3px; }
+    .header-right { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+    .badge-govt { display: inline-flex; align-items: center; gap: 4px; background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; padding: 3px 8px; font-size: 11px; font-weight: 600; }
+    .btn-saffron { background: var(--saffron); color: #fff; padding: 8px 24px; font-size: 13px; font-weight: 700; letter-spacing: .06em; border: 1px solid var(--saffron-dark); transition: background .2s; display: inline-block; }
+    .btn-saffron:hover { background: var(--saffron-dark); }
+
+    /* ── Nav ── */
+    nav { background: var(--navy); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+    nav .container { display: flex; align-items: center; overflow-x: auto; }
+    nav a { display: inline-block; padding: 12px 16px; font-size: 13px; font-weight: 500; color: #bfdbfe; letter-spacing: .03em; border-bottom: 2px solid transparent; white-space: nowrap; transition: all .15s; }
+    nav a:hover { color: #fff; background: rgba(255,255,255,.08); }
+    nav .nav-apply { margin-left: auto; padding: 8px 0; flex-shrink: 0; }
+    nav .nav-apply a { background: var(--saffron); color: #fff; font-weight: 700; font-size: 11px; letter-spacing: .08em; border: none; padding: 6px 20px; border-bottom: none; }
+    nav .nav-apply a:hover { background: var(--saffron-dark); }
+
+    /* ── Hero ── */
+    .hero { background: var(--navy); color: #fff; padding: 56px 0; }
+    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .hero-tag { display: inline-block; background: var(--saffron); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; margin-bottom: 20px; }
+    .hero h2 { font-family: 'Noto Serif', serif; font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+    .hero p { color: #bfdbfe; font-size: 15px; line-height: 1.7; margin-bottom: 24px; max-width: 480px; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(255,255,255,.4); color: #fff; padding: 10px 28px; font-size: 13px; font-weight: 500; transition: background .2s; }
+    .btn-outline:hover { background: rgba(255,255,255,.1); }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--saffron); color: #fff; padding: 10px 28px; font-size: 13px; font-weight: 700; border: 1px solid var(--saffron-dark); transition: background .2s; }
+    .btn-primary:hover { background: var(--saffron-dark); }
+    .hero-img { border: 4px solid rgba(255,255,255,.1); box-shadow: 0 20px 60px rgba(0,0,0,.4); width: 100%; }
+
+    /* ── Stats strip ── */
+    .stats { background: var(--saffron); color: #fff; }
+    .stats-inner { display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat { padding: 16px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,.3); }
+    .stat:last-child { border-right: none; }
+    .stat-val { font-family: 'Noto Serif', serif; font-size: 26px; font-weight: 700; line-height: 1.1; }
+    .stat-lbl { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #fed7aa; margin-top: 3px; }
+
+    /* ── Section commons ── */
+    section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+    section.alt { background: var(--bg-light); }
+    .section-title { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+    .section-title .bar { width: 4px; height: 32px; background: var(--saffron); flex-shrink: 0; }
+    .section-title h2 { font-family: 'Noto Serif', serif; font-size: 20px; font-weight: 700; color: var(--navy); }
+
+    /* ── About ── */
+    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+    .about-main { background: var(--bg-faint); border: 1px solid var(--border); padding: 24px; }
+    .about-main h3 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .about-main p { font-size: 13px; color: #374151; line-height: 1.7; margin-bottom: 16px; }
+    .about-main blockquote { border-left: 4px solid var(--navy); padding-left: 16px; font-size: 13px; color: #4b5563; font-style: italic; line-height: 1.7; }
+    .about-sidebar { background: var(--navy); color: #fff; padding: 24px; }
+    .about-sidebar h3 { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: hsl(33,100%,70%); margin-bottom: 16px; }
+    .about-sidebar ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .about-sidebar li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; }
+    .dot { width: 16px; height: 16px; border-radius: 50%; background: var(--saffron); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .dot::after { content: '✓'; font-size: 9px; color: #fff; }
+
+    /* ── Eligibility ── */
+    .elig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .card { background: #fff; border: 1px solid var(--border); overflow: hidden; }
+    .card-head { padding: 10px 16px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .card-head.navy { background: var(--navy); color: #fff; }
+    .card-head.saffron { background: var(--saffron); color: #fff; }
+    table { width: 100%; font-size: 13px; border-collapse: collapse; }
+    td { padding: 10px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    td.lbl { font-weight: 500; color: #6b7280; background: var(--bg-faint); width: 160px; }
+    td.val { font-weight: 600; color: #111827; }
+    .benefit-box { border: 1px solid var(--border); padding: 12px; margin: 12px 16px; }
+    .benefit-box + .benefit-box { margin-top: 0; }
+    .benefit-box:last-child { margin-bottom: 12px; }
+    .benefit-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--navy); margin-bottom: 4px; }
+    .benefit-box.green { background: #f0fdf4; }
+    .benefit-box.green .benefit-title { color: #15803d; }
+
+    /* ── Steps ── */
+    .steps-grid { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--border); }
+    .step { border-right: 1px solid var(--border); }
+    .step:last-child { border-right: none; }
+    .step:nth-child(even) { background: var(--bg-faint); }
+    .step-head { background: var(--navy); color: #fff; padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
+    .step-num { width: 32px; height: 32px; background: var(--saffron); color: #fff; font-weight: 700; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-label { font-size: 9px; text-transform: uppercase; letter-spacing: .1em; color: #93c5fd; }
+    .step-title { font-size: 13px; font-weight: 600; line-height: 1.2; }
+    .step-body { padding: 16px; }
+    .step-body li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #374151; margin-bottom: 8px; list-style: none; }
+    .step-body li::before { content: '›'; color: var(--saffron); font-size: 16px; line-height: 1; flex-shrink: 0; }
+    .docs-grid { margin-top: 24px; background: var(--bg-faint); border: 1px solid var(--border); overflow: hidden; }
+    .docs-head { background: var(--navy); color: #fff; padding: 10px 16px; font-size: 13px; font-weight: 600; }
+    .docs-body { display: grid; grid-template-columns: 1fr 1fr; }
+    .docs-col { padding: 16px; }
+    .docs-col:last-child { background: #fffbeb; border-left: 1px solid var(--border); }
+    .docs-col-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #6b7280; margin-bottom: 10px; }
+    .docs-col.amber .docs-col-title { color: #b45309; }
+    .docs-col li { font-size: 13px; color: #374151; margin-bottom: 6px; list-style: none; display: flex; gap: 6px; }
+    .docs-col li::before { content: '•'; color: var(--saffron); font-weight: 700; flex-shrink: 0; }
+    .docs-col.amber li { color: #78350f; }
+    .docs-col.amber li::before { content: '*'; }
+
+    /* ── Benefits ── */
+    .benefits-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .benefit-card { background: #fff; border: 1px solid var(--border); overflow: hidden; }
+    .benefit-card-top { height: 6px; background: var(--navy); }
+    .benefit-card-body { padding: 20px; }
+    .benefit-card-title { font-weight: 700; color: var(--navy); font-size: 15px; }
+    .benefit-card-sub { color: var(--saffron); font-size: 13px; font-weight: 600; float: right; }
+    .benefit-card-body p { font-size: 13px; color: #374151; line-height: 1.7; margin-top: 12px; }
+    .benefit-card-body .marathi { font-size: 12px; color: #6b7280; font-style: italic; line-height: 1.7; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); }
+
+    /* ── Careers ── */
+    .career-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+    .career-list-box { background: var(--bg-faint); border: 1px solid var(--border); overflow: hidden; margin-bottom: 20px; }
+    .career-list-head { background: var(--navy); color: #fff; padding: 8px 16px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    .career-cols { padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .career-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #374151; }
+    .career-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--saffron); flex-shrink: 0; }
+    .outcome-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .outcome-item { display: flex; align-items: center; gap: 8px; background: var(--bg-faint); border: 1px solid var(--border); padding: 10px; font-size: 13px; font-weight: 500; color: #374151; }
+    .outcome-item::before { content: '✓'; color: #16a34a; font-weight: 700; }
+    .streams-box { border: 1px solid var(--border); overflow: hidden; margin-top: 40px; }
+    .streams-head { background: var(--navy); color: #fff; padding: 10px 16px; font-size: 13px; font-weight: 600; }
+    .streams-cols { display: grid; grid-template-columns: repeat(3,1fr); }
+    .stream-col { padding: 16px; background: var(--bg-faint); border-right: 1px solid var(--border); }
+    .stream-col:last-child { border-right: none; }
+    .stream-col-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 12px; }
+    .stream-col-title.blue { color: #1d4ed8; }
+    .stream-col-title.green { color: #15803d; }
+    .stream-col-title.purple { color: #7e22ce; }
+    .stream-col li { font-size: 13px; color: #374151; margin-bottom: 6px; list-style: none; display: flex; gap: 6px; align-items: center; }
+    .stream-col li::before { content: '›'; color: #9ca3af; }
+
+    /* ── Exam ── */
+    .exam-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .exam-after ul { padding: 16px; }
+    .exam-after li { font-size: 13px; color: #374151; margin-bottom: 8px; list-style: none; display: flex; gap: 8px; align-items: flex-start; }
+    .exam-after li::before { content: '›'; color: var(--saffron); font-size: 16px; line-height: 1; flex-shrink: 0; }
+    .note-box { margin: 12px 16px; background: var(--bg-faint); border: 1px solid var(--border); padding: 12px; font-size: 12px; color: #4b5563; }
+    .note-box strong { color: var(--navy); display: block; margin-bottom: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+
+    /* ── Contact ── */
+    .contact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .contact-card { background: var(--bg-faint); border: 1px solid var(--border); padding: 20px; }
+    .contact-card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .contact-card-head span { font-size: 20px; }
+    .contact-card-head h3 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--navy); }
+    .contact-card a { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 8px; transition: color .15s; }
+    .contact-card a:hover { color: var(--saffron); }
+    .contact-card .divider { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+    .contact-card address { font-style: normal; font-size: 13px; color: #374151; line-height: 1.7; }
+    .cta-bar { margin-top: 32px; background: var(--navy); padding: 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; justify-content: space-between; }
+    .cta-bar h3 { font-family: 'Noto Serif', serif; color: #fff; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .cta-bar p { color: #93c5fd; font-size: 13px; }
+
+    /* ── Footer ── */
+    footer { background: var(--navy-dark); color: #fff; }
+    .footer-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; padding: 32px 0; }
+    .footer-col h4 { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+    .footer-col p { font-size: 12px; color: #93c5fd; line-height: 1.7; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .footer-col ul li a { font-size: 12px; color: #93c5fd; transition: color .15s; }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-col .quick-title { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: hsl(33,100%,70%); margin-bottom: 12px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding: 12px 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 10px; color: #93c5fd; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero h2 { font-size: 26px; }
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
+      .about-grid, .elig-grid, .steps-grid, .benefits-grid, .career-grid, .exam-grid, .contact-grid { grid-template-columns: 1fr; }
+      .docs-body { grid-template-columns: 1fr; }
+      .streams-cols { grid-template-columns: 1fr; }
+      .stream-col { border-right: none; border-bottom: 1px solid var(--border); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .header-right { margin-left: 0; align-items: flex-start; }
+      .step { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="utility-bar">
+    <div class="container">
+      <div class="left">
+        <span>📞 7768844044 &nbsp;|&nbsp; 8793934404</span>
+        <span>🌐 www.bvpy.in</span>
+      </div>
+      <div class="right">
+        <span>Facebook: @bvpy.in</span>
+        <span>Instagram: @bvpy.in</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tricolor -->
+  <div class="tricolor"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <div class="header-brand">
+          <img src="assets/logo.png" alt="BVPY Logo" />
+          <div>
+            <h1>भारतीय वैज्ञानिक प्रोत्साहन योजना</h1>
+            <p class="sub">Bhartiya Vaigyanik Protsahan Yojana</p>
+            <p class="meta">Ministry of Corporate Affairs &amp; India Book of Records &nbsp;|&nbsp; Since 2019</p>
+          </div>
+        </div>
+        <div class="header-right">
+          <span class="badge-govt">✓ Government Approved Scheme</span>
+          <a href="https://www.bvpy.in" target="_blank" class="btn-saffron">APPLY NOW</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nav -->
+  <nav>
+    <div class="container">
+      <a href="#about">About</a>
+      <a href="#eligibility">Eligibility</a>
+      <a href="#how-it-works">How to Apply</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#careers">Careers</a>
+      <a href="#exam">Exam Details</a>
+      <a href="#contact">Contact</a>
+      <div class="nav-apply">
+        <a href="https://www.bvpy.in" target="_blank">APPLY ONLINE</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" style="border:none;">
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <span class="hero-tag">100% Scholarship Exam</span>
+          <h2>Free Education for<br />Meritorious Students</h2>
+          <p>BVPY offers 100% free education and coaching to deserving students of 8th, 9th, and 10th class — covering foundation studies, board preparation, and competitive exams like IIT-JEE, NEET &amp; MH-CET.</p>
+          <div class="hero-btns">
+            <a href="https://www.bvpy.in" target="_blank" class="btn-primary">Apply for Scholarship ›</a>
+            <a href="#how-it-works" class="btn-outline">How to Apply</a>
+          </div>
+        </div>
+        <div>
+          <img src="assets/flyer.jpg" alt="BVPY Scholarship Program Flyer" class="hero-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="container">
+      <div class="stats-inner">
+        <div class="stat"><div class="stat-val">2019</div><div class="stat-lbl">Established</div></div>
+        <div class="stat"><div class="stat-val">100%</div><div class="stat-lbl">Scholarship Available</div></div>
+        <div class="stat"><div class="stat-val">8th–12th</div><div class="stat-lbl">Class Coverage</div></div>
+        <div class="stat"><div class="stat-val">Online / Offline</div><div class="stat-lbl">Exam Mode</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title"><div class="bar"></div><h2>About the Scheme</h2></div>
+      <div class="about-grid">
+        <div class="about-main">
+          <h3>Our Aim / प्रमुख उद्दिष्टे</h3>
+          <p>Our aim is to provide quality modern education to rural and urban students — especially those who are underprivileged and financially disadvantaged. BVPY makes free, accessible education a reality for every deserving child.</p>
+          <blockquote>आमचे ध्येय ग्रामीण व शहरी भागातील विद्यार्थ्यांना गुणवत्तापूर्ण व आधुनिक शिक्षणाची संधी उपलब्ध करून देणे आहे. विशेषतः दुर्लक्षित व आर्थिकदृष्ट्या मागास विद्यार्थ्यांसाठी शिक्षण मोफत व सुलभ करण्याचा आमचा प्रयत्न आहे.</blockquote>
+        </div>
+        <div class="about-sidebar">
+          <h3>Key Facts</h3>
+          <ul>
+            <li><div class="dot"></div>Registered under Ministry of Corporate Affairs</li>
+            <li><div class="dot"></div>Recognized by India Book of Records</li>
+            <li><div class="dot"></div>Government Approved Scheme</li>
+            <li><div class="dot"></div>Operating since 2019</li>
+            <li><div class="dot"></div>8th | 9th | 10th class students eligible</li>
+            <li><div class="dot"></div>Online &amp; Offline exam options</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Eligibility -->
+  <section id="eligibility" class="alt">
+    <div class="container">
+      <div class="section-title"><div class="bar"></div><h2>Eligibility Criteria</h2></div>
+      <div class="elig-grid">
+        <div class="card">
+          <div class="card-head navy">👥 Student Eligibility</div>
+          <table>
+            <tr><td class="lbl">Class</td><td class="val">8th / 9th / 10th Standard</td></tr>
+            <tr><td class="lbl">Family Income</td><td class="val">Not more than ₹1,00,000 per annum</td></tr>
+            <tr><td class="lbl">Exam</td><td class="val">BVPY-100% Scholarship Exam (mandatory)</td></tr>
+            <tr><td class="lbl">Interview</td><td class="val">Required for qualified candidates</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-head saffron">🏆 Scholarship Benefits</div>
+          <div class="benefit-box">
+            <div class="benefit-title">For 8th | 9th | 10th</div>
+            <div style="font-size:13px;color:#374151;">Classroom Tuitions, Foundation Preparation, Digital Data, Memory Lab, Vedic Maths, Competitive Studies</div>
+          </div>
+          <div class="benefit-box">
+            <div class="benefit-title">For 11th | 12th</div>
+            <div style="font-size:13px;color:#374151;">Boards &amp; Competitive Exam Coaching: IIT-JEE | NEET | MH-CET</div>
+          </div>
+          <div class="benefit-box green">
+            <div class="benefit-title">Free Education / Ni:Shulk Shikshan</div>
+            <div style="font-size:13px;color:#374151;">Up to 100% scholarship with Government-approved funding. Financial support for underprivileged and meritorious students.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works">
+    <div class="container">
+      <div class="section-title"><div class="bar"></div><h2>How to Apply — 3-Step Process</h2></div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-head"><div class="step-num">1</div><div><div class="step-label">Step 1</div><div class="step-title">Fill Application Form</div></div></div>
+          <div class="step-body"><ul>
+            <li>Available online at www.bvpy.in</li>
+            <li>At Regional Authorised Office</li>
+            <li>Distributed in schools by authorities</li>
+          </ul></div>
+        </div>
+        <div class="step">
+          <div class="step-head"><div class="step-num">2</div><div><div class="step-label">Step 2</div><div class="step-title">Attend Scholarship Exam</div></div></div>
+          <div class="step-body"><ul>
+            <li>50 Questions — 100 Marks</li>
+            <li>Duration: 1 Hour (60 Minutes)</li>
+            <li>Mode: Online / Offline</li>
+            <li>Subjects: Maths, Science, English, GK</li>
+            <li>All questions are compulsory</li>
+          </ul></div>
+        </div>
+        <div class="step">
+          <div class="step-head"><div class="step-num">3</div><div><div class="step-label">Step 3</div><div class="step-title">Interview &amp; Verification</div></div></div>
+          <div class="step-body"><ul>
+            <li>Qualified candidates called for interview</li>
+            <li>Visit nearest authorised centre</li>
+            <li>Submit required documents</li>
+            <li>Verification takes 3 working days</li>
+            <li>Qualified candidates receive ID number</li>
+          </ul></div>
+        </div>
+      </div>
+
+      <div class="docs-grid">
+        <div class="docs-head">Required Documents for Verification</div>
+        <div class="docs-body">
+          <div class="docs-col">
+            <div class="docs-col-title">Mandatory Documents</div>
+            <ul>
+              <li>Student's Aadhar Card (Xerox)</li>
+              <li>Parent / Guardian's Aadhar Card (Xerox)</li>
+              <li>Father / Guardian's PAN Card (Xerox)</li>
+              <li>Caste Certificate or Income Certificate (Xerox)</li>
+              <li>10th Marksheet (if available)</li>
+            </ul>
+          </div>
+          <div class="docs-col amber">
+            <div class="docs-col-title">Important Notes</div>
+            <ul>
+              <li>Documents verification will take 3 working days.</li>
+              <li>Only one attempt will be calculated for results.</li>
+              <li>Online exam must be given on internet-accessible device.</li>
+              <li>Qualified candidates will receive a unique ID number.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits" class="alt">
+    <div class="container">
+      <div class="section-title"><div class="bar"></div><h2>Benefits of Free Education / Ni:Shulk Shikshan</h2></div>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-card-top"></div>
+          <div class="benefit-card-body">
+            <span class="benefit-card-sub">समान संधी</span>
+            <div class="benefit-card-title">Equal Opportunity</div>
+            <p>Removes financial barriers so that poor and underprivileged children can study alongside others.</p>
+            <div class="marathi">आर्थिक अडथळे दूर करून गरीब व वंचित मुलांनाही इतरांप्रमाणे शिकण्याची संधी मिळते.</div>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-card-top"></div>
+          <div class="benefit-card-body">
+            <span class="benefit-card-sub">आर्थिक प्रगती</span>
+            <div class="benefit-card-title">Economic Growth</div>
+            <p>Free education builds a skilled workforce which drives national development.</p>
+            <div class="marathi">मोफत शिक्षणामुळे कुशल मनुष्यबळ तयार होते, जे राष्ट्राच्या विकासाला गती देते.</div>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-card-top"></div>
+          <div class="benefit-card-body">
+            <span class="benefit-card-sub">गरिबी कमी होते</span>
+            <div class="benefit-card-title">Reduces Poverty</div>
+            <p>Education equips children with skills and knowledge, helping them secure better jobs and break the cycle of poverty.</p>
+            <div class="marathi">शिक्षणामुळे मुलांना कौशल्ये व ज्ञान मिळते, ज्यामुळे त्यांना चांगल्या नोकऱ्या मिळून गरिबीच्या चक्रातून बाहेर पडता येते.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Careers -->
+  <section id="careers">
+    <div class="container">
+      <div class="section-title"><div class="bar"></div><h2>Career Opportunities</h2></div>
+      <div class="career-grid">
+        <div>
+          <p style="font-size:13px;color:#4b5563;margin-bottom:20px;line-height:1.7;">High-demand careers in Science, Research and Technology are open to BVPY scholarship students. Graduates can expect annual incomes ranging from <strong>₹50,000 to ₹1,50,000+</strong>.</p>
+          <div class="career-list-box">
+            <div class="career-list-head">Career Fields — Science, Research &amp; Technology</div>
+            <div class="career-cols">
+              <div class="career-item"><span class="career-dot"></span>Civil Engineering</div>
+              <div class="career-item"><span class="career-dot"></span>Mechanical Engineering</div>
+              <div class="career-item"><span class="career-dot"></span>Aerospace Engineering</div>
+              <div class="career-item"><span class="career-dot"></span>Electrical Engineering</div>
+              <div class="career-item"><span class="career-dot"></span>Data Science</div>
+              <div class="career-item"><span class="career-dot"></span>Robotics</div>
+              <div class="career-item"><span class="career-dot"></span>Machine Learning</div>
+              <div class="career-item"><span class="career-dot"></span>Artificial Intelligence</div>
+              <div class="career-item"><span class="career-dot"></span>Software Developer</div>
+              <div class="career-item"><span class="career-dot"></span>Information Technology</div>
+              <div class="career-item"><span class="career-dot"></span>Cyber Security</div>
+              <div class="career-item"><span class="career-dot"></span>Game Designer</div>
+              <div class="career-item"><span class="career-dot"></span>AR-VR Specialist</div>
+              <div class="career-item"><span class="career-dot"></span>Environment Scientist</div>
+              <div class="career-item"><span class="career-dot"></span>Food Technology</div>
+              <div class="career-item"><span class="career-dot"></span>Agricultural Scientists</div>
+              <div class="career-item"><span class="career-dot"></span>Forensic Scientists</div>
+              <div class="career-item"><span class="career-dot"></span>Nano Technology</div>
+              <div class="career-item"><span class="career-dot"></span>Space Scientists</div>
+              <div class="career-item"><span class="career-dot"></span>Defense Research</div>
+              <div class="career-item"><span class="career-dot"></span>Aviation &amp; Aerospace</div>
+              <div class="career-item"><span class="career-dot"></span>Civil Services</div>
+            </div>
+          </div>
+          <div class="outcome-grid">
+            <div class="outcome-item">Guaranteed Jobs</div>
+            <div class="outcome-item">Foreign Placement</div>
+            <div class="outcome-item">Well Established</div>
+            <div class="outcome-item">Successful Career</div>
+          </div>
+        </div>
+        <div>
+          <img src="assets/career.jpg" alt="BVPY Career Opportunities" style="border:1px solid var(--border);box-shadow:0 4px 12px rgba(0,0,0,.1);" />
+        </div>
+      </div>
+
+      <div class="streams-box">
+        <div class="streams-head">After School Choices — 11th &amp; 12th Stream Options</div>
+        <div class="streams-cols">
+          <div class="stream-col">
+            <div class="stream-col-title blue">Science, Research &amp; Technology</div>
+            <ul>
+              <li>General Science</li>
+              <li>Computer Science</li>
+              <li>Information Technology</li>
+              <li>Electronics</li>
+              <li>Home Science</li>
+              <li>Other Vocational</li>
+            </ul>
+          </div>
+          <div class="stream-col">
+            <div class="stream-col-title green">Commerce &amp; Management</div>
+            <ul>
+              <li>Accountancy</li>
+              <li>Business Management</li>
+              <li>Hotel Management</li>
+              <li>Law (Advocate)</li>
+            </ul>
+          </div>
+          <div class="stream-col">
+            <div class="stream-col-title purple">Arts &amp; Hospitality</div>
+            <ul>
+              <li>Sociology</li>
+              <li>Political Science</li>
+              <li>History and Civil</li>
+              <li>Media &amp; Communication</li>
+            </ul>
+          </div>
+        </div>
+        <div style="padding:12px;border-top:1px solid var(--border);">
+          <img src="assets/streams.jpg" alt="BVPY Stream Choices" style="width:100%;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exam Details -->
+  <section id="exam" class="alt">
+    <div class="container">
+      <div class="section-title"><div class="bar"></div><h2>Exam Details — BVPY Scholarship Exam</h2></div>
+      <div class="exam-grid">
+        <div class="card">
+          <div class="card-head navy">Exam Pattern</div>
+          <table>
+            <tr><td class="lbl">Total Questions</td><td class="val">50 (All Compulsory)</td></tr>
+            <tr><td class="lbl">Total Marks</td><td class="val">100</td></tr>
+            <tr><td class="lbl">Duration</td><td class="val">1 Hour (60 Minutes)</td></tr>
+            <tr><td class="lbl">Mode</td><td class="val">Online / Offline</td></tr>
+            <tr><td class="lbl">Date</td><td class="val">To be declared</td></tr>
+            <tr><td class="lbl">Conducted by</td><td class="val">BVPY Head Office</td></tr>
+            <tr><td class="lbl">Subjects</td><td class="val">Maths, Science, English, G.K.</td></tr>
+          </table>
+        </div>
+        <div class="card exam-after">
+          <div class="card-head saffron">After Qualifying the Exam</div>
+          <ul>
+            <li>Candidates selected after BVPY-100% Scholarship Exam</li>
+            <li>Visit nearest authorised centre for interview</li>
+            <li>Submit required documents for verification</li>
+            <li>Student will be selected for further education</li>
+            <li>All notifications circulated to students directly</li>
+          </ul>
+          <div class="note-box">
+            <strong>NOTE</strong>
+            Only <strong>one attempt</strong> will be calculated for results. Online exam should be given on an internet-accessible device (Mobile Phone / Laptop / Computer / Tablet).
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title"><div class="bar"></div><h2>Contact &amp; Office Information</h2></div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-card-head"><span>📞</span><h3>Helpline Numbers</h3></div>
+          <a href="tel:7768844044">📞 7768844044</a>
+          <a href="tel:8793934404">📞 8793934404</a>
+          <hr class="divider" />
+          <a href="https://www.instagram.com/bvpy.in" target="_blank">📸 @bvpy.in (Instagram)</a>
+          <a href="https://www.facebook.com/bvpy.in" target="_blank">📘 @bvpy.in (Facebook)</a>
+          <a href="https://www.bvpy.in" target="_blank">🌐 www.bvpy.in</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-head"><span>📍</span><h3>Head Office</h3></div>
+          <address>413 A, 2nd Floor,<br />Sector-68, HSIIDC, IMT,<br />Faridabad — 121004,<br />Haryana, India</address>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-head"><span>📍</span><h3>Regional Authorised Office</h3></div>
+          <address>Jatpura Gate,<br />Behind Domino's,<br />Ramala Talav Road,<br />Chandrapur, Maharashtra — 442401</address>
+        </div>
+      </div>
+      <div class="cta-bar">
+        <div>
+          <h3>Application Form Available Now</h3>
+          <p>Apply online on official website. Limited seats — apply before deadline.</p>
+        </div>
+        <a href="https://www.bvpy.in" target="_blank" class="btn-saffron" style="font-size:13px;">APPLY NOW AT www.bvpy.in</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="tricolor"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>BVPY — Bhartiya Vaigyanik Protsahan Yojana</h4>
+          <p>A Government-approved scholarship scheme under the Ministry of Corporate Affairs, Government of India. Recognised by India Book of Records.</p>
+          <p style="margin-top:12px;color:#7dd3fc;">"Education Enhances the Dignity"</p>
+        </div>
+        <div class="footer-col">
+          <div class="quick-title">Quick Links</div>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#eligibility">Eligibility</a></li>
+            <li><a href="#how-it-works">How to Apply</a></li>
+            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#exam">Exam Details</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="quick-title">Official Website</div>
+          <a href="https://www.bvpy.in" target="_blank" class="btn-saffron" style="font-size:12px;display:inline-block;margin-bottom:12px;">www.bvpy.in</a>
+          <p>Apply online through the official portal only.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2019–2026 Bhartiya Vaigyanik Protsahan Yojana. All rights reserved.</span>
+        <span>Ministry of Corporate Affairs | India Book of Records</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
